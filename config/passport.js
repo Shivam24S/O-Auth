@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "./.dev.env" });
+
 import passport from "passport";
 import passportGoogle from "passport-google-oauth20";
+import User from "../model/User.js";
+
 const GoogleStrategy = passportGoogle.Strategy;
 
 passport.use(
@@ -11,9 +14,23 @@ passport.use(
       clientSecret: process.env.G_CLIENT_SECRET,
       callbackURL: "/auth/google/redirect",
     },
-    (accessToken, refreshToken, profile, done) => {
-      // get profile details
-      // save profile details in db
+    async (accessToken, refreshToken, profile, done) => {
+      const user = await User.findOne({ googleId: profile.id });
+
+      // If user doesn't exist creates a new user. (similar to sign up)
+      if (!user) {
+        const newUser = await User.create({
+          googleId: profile.id,
+          name: profile.displayName,
+          email: profile.emails?.[0].value,
+          // we are using optional chaining because profile.emails may be undefined.
+        });
+        if (newUser) {
+          done(null, newUser);
+        }
+      } else {
+        done(null, user);
+      }
     }
   )
 );
