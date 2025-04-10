@@ -2,10 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 
 import connectDB from "./mongoose/mongoose.js";
+import router from "./routes/authRoutes.js";
 
 const app = express();
 
 dotenv.config({ path: "./.dev.env" });
+
+app.use(express.json());
+app.use(router);
 
 app.set("view engine", "ejs");
 
