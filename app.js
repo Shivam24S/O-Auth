@@ -10,7 +10,7 @@ dotenv.config({ path: "./.dev.env" });
 const app = express();
 
 app.use(express.json());
-app.use(router);
+app.use("/auth", router);
 
 app.set("view engine", "ejs");
 

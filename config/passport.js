@@ -17,9 +17,3 @@ passport.use(
     }
   )
 );
-
-console.log(
-  "passport env",
-  process.env.G_CLIENT_ID,
-  process.env.G_CLIENT_SECRET
-);
