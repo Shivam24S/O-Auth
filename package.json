@@ -13,8 +13,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
