@@ -3,10 +3,11 @@ import dotenv from "dotenv";
 
 import connectDB from "./mongoose/mongoose.js";
 import router from "./routes/authRoutes.js";
-
-const app = express();
+import "./config/passport.js";
 
 dotenv.config({ path: "./.dev.env" });
+
+const app = express();
 
 app.use(express.json());
 app.use(router);
