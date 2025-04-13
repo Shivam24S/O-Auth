@@ -14,6 +14,7 @@ const app = express();
 // Middleware Setup
 app.use(express.json());
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 // Session Configuration (MUST come before passport)
 app.use(
